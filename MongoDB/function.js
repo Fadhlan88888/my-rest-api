@@ -10,7 +10,7 @@ async function addUser(username, email, password, apikey) {
       password,
       apikey,
       defaultKey: apikey,
-      limit: limitCount
+      limit,
    };
    User.create(obj);
 }
@@ -74,7 +74,7 @@ async function resetAllLimit() {
         users.forEach(async(data) => {
             let { username } = data
             if (username !== null) {
-                return User.updateOne({username: username}, {limit: limitCount}, function (err, res) {
+                return User.updateOne({username: username}, function (err, res) {
                     if (err) throw err;
                 });
             } 
